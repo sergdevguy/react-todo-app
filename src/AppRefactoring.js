@@ -2,18 +2,18 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar/Sidebar';
 
 function AppRefactoring() {
-    let tasksFromStorage = JSON.parse(localStorage.getItem("todo")) || [];
-    const [tasks, setTasks] = useState(tasksFromStorage);
+    const [tasks, setTasks] = useState(JSON.parse(window.localStorage.getItem("todo")));
 
     useEffect(() => {
-        tasksFromStorage = JSON.parse(localStorage.getItem("todo"));
-        setTasks(tasksFromStorage);
+        setTasks(JSON.parse(localStorage.getItem("todo")));
     }, []);
 
+    useEffect(() => {
+        localStorage.setItem('todo', JSON.stringify(tasks));
+    }, [tasks]);
+
     const setStorageObj = (task) => {
-        tasks ? setTasks([task, ...tasks]) : setTasks([task]);
-        const serialTasks = JSON.stringify(tasks);
-        localStorage.setItem("todo", serialTasks);
+        return setTasks([task, ...tasks]);
     }
 
     return (
