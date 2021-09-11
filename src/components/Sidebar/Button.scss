@@ -1,4 +1,8 @@
 .button {
+    &__add {
+        cursor: pointer;
+    }
+
     &__popup {
         display: flex;
         flex-direction: column;

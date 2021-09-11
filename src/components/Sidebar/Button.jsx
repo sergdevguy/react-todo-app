@@ -3,7 +3,7 @@ import TextWithIcon from "../UI/Text/TextWithIcon";
 import AddSvg from "../UI/Icons/AddSvg";
 import './Button.scss'
 
-const Button = ({ setStorageObj }) => {
+const Button = ({ addTask }) => {
     const [addListButtonOpened, setAddListButtonOpened] = useState(false);
     const [listInputTitle, setListInputTitle] = useState('');
     const [listInputColor, setListInputColor] = useState('#000000');
@@ -41,12 +41,16 @@ const Button = ({ setStorageObj }) => {
                         </label>
                         <button
                             className="button__popup-item"
-                            onClick={() => setStorageObj(
-                                {
+                            onClick={() => {
+                                addTask({
                                     title: listInputTitle,
                                     color: listInputColor,
-                                }
-                            )}>Добавить</button>
+                                })
+                                setListInputTitle('');
+                                setListInputColor('#000000');
+                                setAddListButtonOpened(false);
+                            }
+                            }>Добавить</button>
                     </div>
             }
         </>

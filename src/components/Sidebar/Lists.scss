@@ -1,0 +1,14 @@
+.lists-list {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    svg {
+        width: 20px;
+        user-select: none;
+    }
+
+    &__remove-button {
+        cursor: pointer;
+    }
+}
