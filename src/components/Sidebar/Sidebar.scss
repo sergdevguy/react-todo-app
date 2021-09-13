@@ -1,0 +1,7 @@
+$main-background: rgb(157, 157, 194);
+$desktop-width: 200px;
+
+.sidebar {
+    width: $desktop-width;
+    background: $main-background;
+}

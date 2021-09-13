@@ -45,7 +45,9 @@ const Button = ({ addTask }) => {
                                 addTask({
                                     title: listInputTitle,
                                     color: listInputColor,
-                                })
+                                    active: true,
+                                    list: [],
+                                });
                                 setListInputTitle('');
                                 setListInputColor('#000000');
                                 setAddListButtonOpened(false);
