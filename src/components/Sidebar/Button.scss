@@ -6,14 +6,22 @@
     &__popup {
         display: flex;
         flex-direction: column;
-        background: red;
+        max-width: 400px;
         padding: 10px;
+        border-radius: 5px;
+        background: lightgrey;
 
         &-item {
             margin-bottom: 10px;
 
             &:last-child {
                 margin-bottom: 0;
+            }
+
+            &._error {
+                &::placeholder {
+                    color: red;
+                }
             }
         }
     }

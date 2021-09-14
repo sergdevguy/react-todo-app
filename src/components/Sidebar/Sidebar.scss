@@ -1,7 +1,8 @@
-$main-background: rgb(157, 157, 194);
-$desktop-width: 200px;
-
 .sidebar {
-    width: $desktop-width;
-    background: $main-background;
+    border-radius: 5px;
+    padding: 10px;
+
+    &__button {
+        margin-top: 20px;
+    }
 }

@@ -1,26 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import TextWithIcon from "../UI/Text/TextWithIcon";
 import AddSvg from "../UI/Icons/AddSvg";
+import './Tasks.scss';
 
-const Tasks = ({ tasks, addTaskList }) => {
-    const [activeTasks, setActiveTasks] = useState(tasks);
+const Tasks = ({ activeTaskList, addTaskList }) => {
     const [addListButtonOpened, setAddListButtonOpened] = useState(false);
     const [listInputTitle, setListInputTitle] = useState('');
 
-    useEffect(() => {
-        if (tasks.length === 0) {
-            return;
-        }
-        const fileredTasks = tasks.filter(item => item.active)[0].list;
-        setActiveTasks(fileredTasks);
-    }, [tasks]);
-
     return (
         <div className="tasks">
-            {activeTasks &&
-                activeTasks.map((task) => (
-                    task
-                ))}
+            {
+                !activeTaskList.length
+                    ?
+                    <div className="tasks__no-tasks">Задач пока нет</div>
+                    :
+                    ""
+            }
+            {
+                activeTaskList &&
+                activeTaskList.map((task) => (
+                    <div key={task}>
+                        {task}
+                    </div>
+                ))
+            }
             <div
                 onClick={() => {
                     setAddListButtonOpened(true);
@@ -45,7 +48,7 @@ const Tasks = ({ tasks, addTaskList }) => {
                                 placeholder="Введите задачу"
                             />
                             <button
-                                onClick={addTaskList([...activeTasks])}
+                                onClick={() => addTaskList([listInputTitle, ...activeTaskList])}
                             >Добавить</button>
                         </div>
                 }

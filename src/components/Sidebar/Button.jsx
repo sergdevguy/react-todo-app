@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import classNames from 'classnames';
 import TextWithIcon from "../UI/Text/TextWithIcon";
 import AddSvg from "../UI/Icons/AddSvg";
 import './Button.scss'
@@ -7,6 +8,7 @@ const Button = ({ addTask }) => {
     const [addListButtonOpened, setAddListButtonOpened] = useState(false);
     const [listInputTitle, setListInputTitle] = useState('');
     const [listInputColor, setListInputColor] = useState('#000000');
+    const [emptyInputError, setEmptyInputError] = useState(false);
 
     return (
         <>
@@ -18,18 +20,18 @@ const Button = ({ addTask }) => {
                         onClick={() => setAddListButtonOpened(!addListButtonOpened)}
                     >
                         <TextWithIcon
-                            text='Добавить список'
+                            text='Добавить группу'
                             icon={AddSvg}
                         />
                     </div>
                     :
                     <div className="button__popup">
                         <input
-                            className="button__popup-item"
+                            className={classNames('button__popup-item input', { '_error': emptyInputError })}
                             onChange={(e) => setListInputTitle(e.target.value)}
                             value={listInputTitle}
                             type="text"
-                            placeholder="Название списка"
+                            placeholder="Введите название группы"
                         />
                         <label className="button__popup-item">
                             Цвет:{' '}
@@ -40,8 +42,12 @@ const Button = ({ addTask }) => {
                             />
                         </label>
                         <button
-                            className="button__popup-item"
+                            className="button__popup-item button"
                             onClick={() => {
+                                if (!listInputTitle) {
+                                    setEmptyInputError(true);
+                                    return;
+                                } 
                                 addTask({
                                     title: listInputTitle,
                                     color: listInputColor,

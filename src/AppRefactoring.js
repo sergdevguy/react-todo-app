@@ -4,6 +4,7 @@ import Tasks from './components/Tasks/Tasks';
 
 function AppRefactoring() {
     const [tasks, setTasks] = useState([]);
+    const [activeTaskList, setActiveTaskList] = useState([]);
 
     useEffect(() => {
         setTasks(JSON.parse(localStorage.getItem("todo")) || []);
@@ -11,8 +12,10 @@ function AppRefactoring() {
 
     useEffect(() => {
         localStorage.setItem('todo', JSON.stringify(tasks));
+        filterActiveTask(tasks);
     }, [tasks]);
 
+    // sidebar
     const addTask = (task) => {
         resetActive();
         return setTasks([task, ...tasks]);
@@ -22,6 +25,7 @@ function AppRefactoring() {
         const filteredTasks = tasks.filter((item) => {
             return (item.title !== task.title);
         });
+        setActiveTaskList([]);
         return setTasks([...filteredTasks]);
     }
 
@@ -45,12 +49,22 @@ function AppRefactoring() {
         return setTasks([...filteredTasks]);
     }
 
+    // list
+    const filterActiveTask = (list) => {
+        const tasksList = list.filter(item => item.active);
+        const tasksListTasks = tasksList[0]?.list;
+        if (!tasksListTasks) {
+            return;
+        }
+        return setActiveTaskList(tasksListTasks);
+    }
+
     const addTaskList = (list) => {
         const tasksWithList = tasks.map(item => {
             if (!item.active) {
                 return item;
             }
-            item.list = [...list];
+            item.list = list;
             return item;
         });
         return setTasks([...tasksWithList]);
@@ -64,10 +78,18 @@ function AppRefactoring() {
                 removeTask={removeTask}
                 setActiveList={setActiveList}
             />
-            <Tasks
-                addTaskList={addTaskList}
-                tasks={tasks}
-            />
+            {
+                tasks.length
+                    ?
+                    <>
+                        <div className="todo__hr"></div>
+                        <Tasks
+                            addTaskList={addTaskList}
+                            activeTaskList={activeTaskList}
+                        />
+                    </>
+                    : ''
+            }
         </div>
     )
 }

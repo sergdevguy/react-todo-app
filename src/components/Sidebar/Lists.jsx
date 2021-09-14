@@ -8,6 +8,14 @@ import './Lists.scss'
 const Lists = ({ tasks, removeTask, setActiveList }) => {
     return (
         <>
+            {
+                tasks.length === 0
+                    ?
+                    <div className="lists-list__no-list">Создай группу задач</div>
+                    :
+                    ''
+            }
+
             {Array.isArray(tasks) &&
                 tasks.map(task => (
                     <div

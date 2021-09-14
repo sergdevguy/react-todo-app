@@ -1,0 +1,14 @@
+.tasks {
+    padding: 10px;
+
+    &__no-tasks {
+        font-size: 25px;
+        color: lightgrey;
+        user-select: none;
+    }
+
+    &__button {
+        margin-top: 20px;
+        cursor: pointer;
+    }
+}
