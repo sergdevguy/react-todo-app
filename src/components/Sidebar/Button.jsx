@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import TextWithIcon from "../UI/Text/TextWithIcon";
 import AddSvg from "../UI/Icons/AddSvg";
+import RemoveSvg from "../UI/Icons/RemoveSvg";
 import './Button.scss'
 
 const Button = ({ addTask }) => {
@@ -9,6 +10,13 @@ const Button = ({ addTask }) => {
     const [listInputTitle, setListInputTitle] = useState('');
     const [listInputColor, setListInputColor] = useState('#000000');
     const [emptyInputError, setEmptyInputError] = useState(false);
+
+    const resetPopup = () => {
+        setListInputTitle('');
+        setListInputColor('#000000');
+        setAddListButtonOpened(false);
+        setEmptyInputError(false);
+    }
 
     return (
         <>
@@ -26,6 +34,12 @@ const Button = ({ addTask }) => {
                     </div>
                     :
                     <div className="button__popup">
+                        <div
+                            onClick={() => resetPopup()}
+                            className="button__popup-close"
+                        >
+                            {RemoveSvg}
+                        </div>
                         <input
                             className={classNames('button__popup-item input', { '_error': emptyInputError })}
                             onChange={(e) => setListInputTitle(e.target.value)}
@@ -47,16 +61,14 @@ const Button = ({ addTask }) => {
                                 if (!listInputTitle) {
                                     setEmptyInputError(true);
                                     return;
-                                } 
+                                }
                                 addTask({
                                     title: listInputTitle,
                                     color: listInputColor,
                                     active: true,
                                     list: [],
                                 });
-                                setListInputTitle('');
-                                setListInputColor('#000000');
-                                setAddListButtonOpened(false);
+                                resetPopup();
                             }
                             }>Добавить</button>
                     </div>

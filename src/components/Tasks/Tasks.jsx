@@ -19,7 +19,7 @@ const Tasks = ({ activeTaskList, addTaskList }) => {
             {
                 activeTaskList &&
                 activeTaskList.map((task) => (
-                    <div key={task}>
+                    <div key={task} className="tasks__item">
                         {task}
                     </div>
                 ))

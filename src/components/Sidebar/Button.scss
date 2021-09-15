@@ -1,12 +1,16 @@
 .button {
     &__add {
         cursor: pointer;
+        display: flex;
+        justify-content: center;
     }
 
     &__popup {
+        position: relative;
         display: flex;
         flex-direction: column;
         max-width: 400px;
+        margin: 0 auto;
         padding: 10px;
         border-radius: 5px;
         background: lightgrey;
@@ -23,6 +27,20 @@
                     color: red;
                 }
             }
+        }
+
+        &-close {
+            position: absolute;
+            right: -8px;
+            top: -8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: lightgrey;
+            cursor: pointer;
         }
     }
 }
