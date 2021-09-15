@@ -20,48 +20,50 @@ const StatusList = ({ opened, resetOpened, addStatus, openedStatusTask, removeIf
     return (
         openedStatus &&
         <div className="tasks__item-status">
-            <div
-                onClick={(e) => {
-                    addStatus({
-                        'title': openedStatusTask,
-                        'status': 'ok',
-                    });
-                    resetButton(e);
-                }}
-                className="tasks__item-status-svg _ok"
-            >
-                {OkSvg}
+            <div className="tasks__item-status-wrapper">
+                <div
+                    onClick={(e) => {
+                        addStatus({
+                            'title': openedStatusTask,
+                            'status': 'ok',
+                        });
+                        resetButton(e);
+                    }}
+                    className="tasks__item-status-svg _ok"
+                >
+                    {OkSvg}
+                </div>
+                <div
+                    onClick={(e) => {
+                        addStatus({
+                            'title': openedStatusTask,
+                            'status': 'cancel',
+                        });
+                        resetButton(e);
+                    }}
+                    className="tasks__item-status-svg _cancel"
+                >
+                    {CancelSvg}
+                </div>
+                <div
+                    onClick={(e) => {
+                        addStatus({
+                            'title': openedStatusTask,
+                            'status': 'trash',
+                        });
+                        removeIfTrash();
+                        resetButton(e);
+                    }}
+                    className="tasks__item-status-svg _trash"
+                >
+                    {TrashSvg}
+                </div>
             </div>
             <div
                 onClick={(e) => {
-                    addStatus({
-                        'title': openedStatusTask,
-                        'status': 'cancel',
-                    });
                     resetButton(e);
                 }}
-                className="tasks__item-status-svg _cancel"
-            >
-                {CancelSvg}
-            </div>
-            <div
-                onClick={(e) => {
-                    addStatus({
-                        'title': openedStatusTask,
-                        'status': 'trash',
-                    });
-                    removeIfTrash();
-                    resetButton(e);
-                }}
-                className="tasks__item-status-svg _trash"
-            >
-                {TrashSvg}
-            </div>
-            <div
-                onClick={(e) => {
-                    resetButton(e);
-                }}
-                className="tasks__item-status-svg"
+                className="tasks__item-status-svg _return"
             >
                 {RemoveSvg}
             </div>
