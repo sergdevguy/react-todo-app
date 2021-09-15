@@ -107,5 +107,45 @@
         cursor: pointer;
         display: flex;
         justify-content: center;
+
+        &-item {
+            &._second {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                max-width: 400px;
+                width: 400px;
+                margin: 0 auto;
+                padding: 10px;
+                border-radius: 5px;
+                background: lightgrey;
+            }
+
+            &-row {
+                &:not(:last-child) {
+                    margin-bottom: 10px;
+                }
+
+                &._error {
+                    &::placeholder {
+                        color: red;
+                    }
+                }
+            }
+
+            &-close {
+                position: absolute;
+                right: -8px;
+                top: -8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: lightgrey;
+                cursor: pointer;
+            }
+        }
     }
 }

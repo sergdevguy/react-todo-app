@@ -41,6 +41,7 @@ const Button = ({ addTask }) => {
                             {RemoveSvg}
                         </div>
                         <input
+                            autoFocus 
                             className={classNames('button__popup-item input', { '_error': emptyInputError })}
                             onChange={(e) => setListInputTitle(e.target.value)}
                             value={listInputTitle}

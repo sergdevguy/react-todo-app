@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import StatusList from './StatusList';
 import TextWithIcon from "../UI/Text/TextWithIcon";
 import AddSvg from "../UI/Icons/AddSvg";
+import RemoveSvg from "../UI/Icons/RemoveSvg";
 import './Tasks.scss';
 
 const Tasks = ({ activeTaskList, addTaskList, addStatus, removeIfTrash }) => {
@@ -10,10 +11,18 @@ const Tasks = ({ activeTaskList, addTaskList, addStatus, removeIfTrash }) => {
     const [listInputTitle, setListInputTitle] = useState('');
     const [openedStatusTask, setOpenedStatusTask] = useState('');
     const [openedTask, setOpenedTask] = useState(false);
+    const [emptyInputError, setEmptyInputError] = useState(false);
 
     const resetOpened = () => {
         setOpenedTask(false);
         setOpenedStatusTask('');
+    }
+
+    const resetButton = (e) => {
+        setAddListButtonOpened(false);
+        setListInputTitle('');
+        setEmptyInputError(false);
+        e.stopPropagation();
     }
 
     return (
@@ -39,7 +48,7 @@ const Tasks = ({ activeTaskList, addTaskList, addStatus, removeIfTrash }) => {
                         key={task.title}
                         className={classNames(
                             'tasks__item',
-                            { 
+                            {
                                 '_ok': (task.status === 'ok'),
                                 '_cancel': (task.status === 'cancel'),
                             }
@@ -79,15 +88,28 @@ const Tasks = ({ activeTaskList, addTaskList, addStatus, removeIfTrash }) => {
                             />
                         </div>
                         :
-                        <div className="tasks__button-item">
+                        <div className="tasks__button-item _second">
+                            <div
+                                onClick={(e) => resetButton(e)}
+                                className="tasks__button-item-close"
+                            >
+                                {RemoveSvg}
+                            </div>
                             <input
+                                className={classNames('tasks__button-item-row input', { '_error': emptyInputError })}
                                 onChange={(e) => setListInputTitle(e.target.value)}
                                 value={listInputTitle}
                                 type="text"
                                 placeholder="Введите задачу"
+                                autoFocus
                             />
                             <button
+                                className="tasks__button-item-row button"
                                 onClick={() => {
+                                    if (!listInputTitle) {
+                                        setEmptyInputError(true);
+                                        return;
+                                    }
                                     addTaskList({
                                         'title': listInputTitle,
                                         'status': '',
