@@ -48,12 +48,14 @@ const Button = ({ addTask }) => {
                             placeholder="Введите название группы"
                         />
                         <label className="button__popup-item">
-                            Цвет:{' '}
-                            <input
-                                onChange={(e) => setListInputColor(e.target.value)}
-                                value={listInputColor}
-                                type="color"
-                            />
+                            Выбери цвет иконки:{' '}
+                            <label>
+                                <input
+                                    onChange={(e) => setListInputColor(e.target.value)}
+                                    value={listInputColor}
+                                    type="color"
+                                />
+                            </label>
                         </label>
                         <button
                             className="button__popup-item button"

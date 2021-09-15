@@ -1,3 +1,5 @@
+$inputColorWidth: 30px;
+
 .button {
     &__add {
         cursor: pointer;
@@ -17,6 +19,8 @@
 
         &-item {
             margin-bottom: 10px;
+            display: flex;
+            align-items: center;
 
             &:last-child {
                 margin-bottom: 0;
@@ -26,6 +30,51 @@
                 &::placeholder {
                     color: red;
                 }
+            }
+
+            label {
+                display: block;
+                position: relative;
+                width: $inputColorWidth;
+                height: $inputColorWidth;
+                margin-left: 10px;
+                cursor: pointer;
+                overflow: hidden;
+            }
+
+            input[type="color"] {
+                -webkit-appearance: none;
+                border: none;
+                background: #fff;
+                width: $inputColorWidth;
+                height: $inputColorWidth;
+                border-radius: 5px;
+                overflow: hidden;
+                outline: none;
+                cursor: inherit;
+            }
+
+            /* -webkit */
+            input[type="color"]::-webkit-color-swatch-wrapper {
+                padding: 0;
+            }
+
+            input[type="color"]::-webkit-color-swatch {
+                border: none;
+                border-radius: 5px;
+            }
+
+            /* firefox */
+            input[type="color"]::-moz-focus-inner {
+                border: none;
+                padding: 0;
+                border-radius: 5px;
+            }
+
+            input[type="color"]::-moz-color-swatch {
+                border: none;
+                border-radius: 5px;
+                height: calc($inputColorWidth - 10px);
             }
         }
 
