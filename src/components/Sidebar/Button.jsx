@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import classNames from 'classnames';
 import TextWithIcon from "../UI/Text/TextWithIcon";
 import AddSvg from "../UI/Icons/AddSvg";
@@ -10,6 +10,7 @@ const Button = ({ addTask }) => {
     const [listInputTitle, setListInputTitle] = useState('');
     const [listInputColor, setListInputColor] = useState('#000000');
     const [emptyInputError, setEmptyInputError] = useState(false);
+    const inputRef = useRef(null);
 
     const resetPopup = () => {
         setListInputTitle('');
@@ -47,6 +48,7 @@ const Button = ({ addTask }) => {
                             value={listInputTitle}
                             type="text"
                             placeholder="Введите название группы"
+                            ref={inputRef}
                         />
                         <label className="button__popup-item">
                             Выбери цвет иконки:{' '}
@@ -63,6 +65,7 @@ const Button = ({ addTask }) => {
                             onClick={() => {
                                 if (!listInputTitle) {
                                     setEmptyInputError(true);
+                                    inputRef.current.focus();
                                     return;
                                 }
                                 addTask({

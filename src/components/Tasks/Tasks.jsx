@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import classNames from 'classnames';
 import StatusList from './StatusList';
 import TextWithIcon from "../UI/Text/TextWithIcon";
@@ -12,6 +12,7 @@ const Tasks = ({ activeTaskList, addTaskList, addStatus, removeIfTrash }) => {
     const [openedStatusTask, setOpenedStatusTask] = useState('');
     const [openedTask, setOpenedTask] = useState(false);
     const [emptyInputError, setEmptyInputError] = useState(false);
+    const inputRef = useRef(null);
 
     const resetOpened = () => {
         setOpenedTask(false);
@@ -102,18 +103,21 @@ const Tasks = ({ activeTaskList, addTaskList, addStatus, removeIfTrash }) => {
                                 type="text"
                                 placeholder="Введите задачу"
                                 autoFocus
+                                ref={inputRef}
                             />
                             <button
                                 className="tasks__button-item-row button"
-                                onClick={() => {
+                                onClick={(e) => {
                                     if (!listInputTitle) {
                                         setEmptyInputError(true);
+                                        inputRef.current.focus();
                                         return;
                                     }
                                     addTaskList({
                                         'title': listInputTitle.trim(),
                                         'status': '',
                                     });
+                                    resetButton(e);
                                 }}
                             >Добавить</button>
                         </div>
