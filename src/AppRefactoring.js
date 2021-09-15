@@ -87,6 +87,17 @@ function AppRefactoring() {
         return setTasks([...tasksList]);
     }
 
+    const removeIfTrash = () => {
+        const tasksList = tasks.map(item => {
+            if (!item.active) {
+                return item;
+            }
+            item.list = item.list.filter((i) => i.status !== 'trash');
+            return item;
+        });
+        return setTasks([...tasksList]);
+    }
+
     return (
         <div className="todo">
             <Sidebar
@@ -102,6 +113,7 @@ function AppRefactoring() {
                         addTaskList={addTaskList}
                         activeTaskList={activeTaskList}
                         addStatus={addStatus}
+                        removeIfTrash={removeIfTrash}
                     />
                     : ''
             }

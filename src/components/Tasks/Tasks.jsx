@@ -5,7 +5,7 @@ import TextWithIcon from "../UI/Text/TextWithIcon";
 import AddSvg from "../UI/Icons/AddSvg";
 import './Tasks.scss';
 
-const Tasks = ({ activeTaskList, addTaskList, addStatus }) => {
+const Tasks = ({ activeTaskList, addTaskList, addStatus, removeIfTrash }) => {
     const [addListButtonOpened, setAddListButtonOpened] = useState(false);
     const [listInputTitle, setListInputTitle] = useState('');
     const [openedStatusTask, setOpenedStatusTask] = useState('');
@@ -55,9 +55,9 @@ const Tasks = ({ activeTaskList, addTaskList, addStatus }) => {
                         {
                             (openedStatusTask === task.title && openedTask)
                                 ?
-                                <StatusList resetOpened={resetOpened} opened={true} addStatus={addStatus} openedStatusTask={openedStatusTask} />
+                                <StatusList resetOpened={resetOpened} opened={true} addStatus={addStatus} openedStatusTask={openedStatusTask} removeIfTrash={removeIfTrash} />
                                 :
-                                <StatusList resetOpened={resetOpened} opened={false} addStatus={addStatus} openedStatusTask={openedStatusTask} />
+                                <StatusList resetOpened={resetOpened} opened={false} addStatus={addStatus} openedStatusTask={openedStatusTask} removeIfTrash={removeIfTrash} />
                         }
 
                     </div>

@@ -4,7 +4,7 @@ import CancelSvg from "../UI/Icons/taskStatus/CancelSvg";
 import TrashSvg from "../UI/Icons/taskStatus/TrashSvg";
 import RemoveSvg from "../UI/Icons/RemoveSvg";
 
-const StatusList = ({ opened, resetOpened, addStatus, openedStatusTask }) => {
+const StatusList = ({ opened, resetOpened, addStatus, openedStatusTask, removeIfTrash }) => {
     const [openedStatus, setOpenedStatus] = useState(true);
 
     const resetButton = (e) => {
@@ -50,6 +50,7 @@ const StatusList = ({ opened, resetOpened, addStatus, openedStatusTask }) => {
                         'title': openedStatusTask,
                         'status': 'trash',
                     });
+                    removeIfTrash();
                     resetButton(e);
                 }}
                 className="tasks__item-status-svg _trash"
@@ -58,9 +59,7 @@ const StatusList = ({ opened, resetOpened, addStatus, openedStatusTask }) => {
             </div>
             <div
                 onClick={(e) => {
-                    resetOpened();
-                    setOpenedStatus(false);
-                    e.stopPropagation()
+                    resetButton(e);
                 }}
                 className="tasks__item-status-svg"
             >
