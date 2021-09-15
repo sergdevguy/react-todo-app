@@ -111,7 +111,7 @@ const Tasks = ({ activeTaskList, addTaskList, addStatus, removeIfTrash }) => {
                                         return;
                                     }
                                     addTaskList({
-                                        'title': listInputTitle,
+                                        'title': listInputTitle.trim(),
                                         'status': '',
                                     });
                                 }}

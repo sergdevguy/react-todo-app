@@ -66,7 +66,7 @@ const Button = ({ addTask }) => {
                                     return;
                                 }
                                 addTask({
-                                    title: listInputTitle,
+                                    title: listInputTitle.trim(),
                                     color: listInputColor,
                                     active: true,
                                     list: [],
