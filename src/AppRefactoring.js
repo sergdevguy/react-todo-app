@@ -70,6 +70,23 @@ function AppRefactoring() {
         return setTasks([...tasksWithList]);
     }
 
+    const addStatus = (task) => {
+        const tasksList = tasks.map(item => {
+            if (!item.active) {
+                return item;
+            }
+            item.list.map((i) => {
+                if (i.title !== task.title) {
+                    return i;
+                }
+                i.status = task.status;
+                return i;
+            })
+            return item;
+        });
+        return setTasks([...tasksList]);
+    }
+
     return (
         <div className="todo">
             <Sidebar
@@ -81,13 +98,11 @@ function AppRefactoring() {
             {
                 tasks.length
                     ?
-                    <>
-                        <div className="todo__hr"></div>
-                        <Tasks
-                            addTaskList={addTaskList}
-                            activeTaskList={activeTaskList}
-                        />
-                    </>
+                    <Tasks
+                        addTaskList={addTaskList}
+                        activeTaskList={activeTaskList}
+                        addStatus={addStatus}
+                    />
                     : ''
             }
         </div>
