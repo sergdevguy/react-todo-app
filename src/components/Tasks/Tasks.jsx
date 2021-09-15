@@ -19,8 +19,8 @@ const Tasks = ({ activeTaskList, addTaskList }) => {
             {
                 activeTaskList &&
                 activeTaskList.map((task) => (
-                    <div key={task} className="tasks__item">
-                        {task}
+                    <div key={task.title} className="tasks__item">
+                        {task.title}
                     </div>
                 ))
             }
@@ -48,7 +48,7 @@ const Tasks = ({ activeTaskList, addTaskList }) => {
                                 placeholder="Введите задачу"
                             />
                             <button
-                                onClick={() => addTaskList([listInputTitle, ...activeTaskList])}
+                                onClick={() => addTaskList({'title': listInputTitle})}
                             >Добавить</button>
                         </div>
                 }

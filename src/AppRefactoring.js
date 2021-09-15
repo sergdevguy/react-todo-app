@@ -64,7 +64,7 @@ function AppRefactoring() {
             if (!item.active) {
                 return item;
             }
-            item.list = list;
+            item.list.unshift(list);
             return item;
         });
         return setTasks([...tasksWithList]);
