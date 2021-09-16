@@ -87,7 +87,7 @@ $inputColorWidth: 30px;
             input[type="color"]::-moz-color-swatch {
                 border: none;
                 border-radius: 5px;
-                height: calc($inputColorWidth - 10px);
+                height: $inputColorWidth;
             }
         }
 
