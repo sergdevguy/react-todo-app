@@ -51,7 +51,7 @@ const Button = ({ addTask, getUserTaskColor }) => {
                             ref={inputRef}
                         />
                         <label className="button__popup-item">
-                            Выбери цвет иконки:{' '}
+                            Выбери цветовую тему списка:{' '}
                             <label>
                                 <input
                                     onChange={(e) => setListInputColor(e.target.value)}
