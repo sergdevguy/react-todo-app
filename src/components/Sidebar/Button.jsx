@@ -5,7 +5,7 @@ import AddSvg from "../UI/Icons/AddSvg";
 import RemoveSvg from "../UI/Icons/RemoveSvg";
 import './Button.scss'
 
-const Button = ({ addTask }) => {
+const Button = ({ addTask, getUserTaskColor }) => {
     const [addListButtonOpened, setAddListButtonOpened] = useState(false);
     const [listInputTitle, setListInputTitle] = useState('');
     const [listInputColor, setListInputColor] = useState('#000000');

@@ -11,7 +11,7 @@ const Lists = ({ tasks, removeTask, setActiveList }) => {
             {
                 tasks.length === 0
                     ?
-                    <div className="lists-list__no-list">Создай группу задач</div>
+                    <div className="lists-list__no-list">Создай группу задач (дом, работа и т.п.)</div>
                     :
                     ''
             }
