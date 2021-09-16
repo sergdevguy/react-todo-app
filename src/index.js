@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import App from './App';
-import AppRefactoring from './AppRefactoring';
+import App from './App';
 
 import './index.scss'
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <AppRefactoring />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
