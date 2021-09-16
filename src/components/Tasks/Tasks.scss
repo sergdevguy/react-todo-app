@@ -110,11 +110,14 @@
 
         &-item {
             &._second {
-                position: relative;
+                position: fixed;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                max-width: calc(100% - 50px);
+                width: 400px;
                 display: flex;
                 flex-direction: column;
-                max-width: 400px;
-                width: 400px;
                 margin: 0 auto;
                 padding: 10px;
                 border-radius: 5px;

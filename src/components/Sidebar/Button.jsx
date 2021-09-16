@@ -21,19 +21,19 @@ const Button = ({ addTask, getUserTaskColor }) => {
 
     return (
         <>
+            <div
+                className="button__add"
+                onClick={() => setAddListButtonOpened(!addListButtonOpened)}
+            >
+                <TextWithIcon
+                    text='Добавить группу'
+                    icon={AddSvg}
+                />
+            </div>
             {
-                !addListButtonOpened
-                    ?
-                    <div
-                        className="button__add"
-                        onClick={() => setAddListButtonOpened(!addListButtonOpened)}
-                    >
-                        <TextWithIcon
-                            text='Добавить группу'
-                            icon={AddSvg}
-                        />
-                    </div>
-                    :
+                addListButtonOpened &&
+                <>
+                    <div className="button__screen-hider"></div>
                     <div className="button__popup">
                         <div
                             onClick={() => resetPopup()}
@@ -42,7 +42,7 @@ const Button = ({ addTask, getUserTaskColor }) => {
                             {RemoveSvg}
                         </div>
                         <input
-                            autoFocus 
+                            autoFocus
                             className={classNames('button__popup-item input', { '_error': emptyInputError })}
                             onChange={(e) => setListInputTitle(e.target.value)}
                             value={listInputTitle}
@@ -78,6 +78,7 @@ const Button = ({ addTask, getUserTaskColor }) => {
                             }
                             }>Добавить</button>
                     </div>
+                </>
             }
         </>
     );

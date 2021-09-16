@@ -79,16 +79,16 @@ const Tasks = ({ activeTaskList, addTaskList, addStatus, removeIfTrash }) => {
                 }}
                 className="tasks__button"
             >
+                <div className="tasks__button-item">
+                    <TextWithIcon
+                        text='Добавить задачу'
+                        icon={AddSvg}
+                    />
+                </div>
                 {
-                    !addListButtonOpened
-                        ?
-                        <div className="tasks__button-item">
-                            <TextWithIcon
-                                text='Добавить задачу'
-                                icon={AddSvg}
-                            />
-                        </div>
-                        :
+                    addListButtonOpened &&
+                    <>
+                        <div className="button__screen-hider"></div>
                         <div className="tasks__button-item _second">
                             <div
                                 onClick={(e) => resetButton(e)}
@@ -121,6 +121,7 @@ const Tasks = ({ activeTaskList, addTaskList, addStatus, removeIfTrash }) => {
                                 }}
                             >Добавить</button>
                         </div>
+                    </>
                 }
             </div>
         </div>
